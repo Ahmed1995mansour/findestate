@@ -1,7 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
-
+import userRouter from './routes/user.route.js'
 
 dotenv.config()
 mongoose.connect(process.env.MONGODB_URI).then(()=> {
@@ -10,9 +10,7 @@ mongoose.connect(process.env.MONGODB_URI).then(()=> {
 
 const app = express()
 
-app.get('/', (req, res)=> {
-    res.send('Hello from backend')
-})
+app.use('/api/user', userRouter)
 
 app.listen(5005, ()=> {
 console.log('Server is listening on port 5005')
