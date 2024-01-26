@@ -23,14 +23,14 @@ const SignUp = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      if (!data.seuccess) {
+      if (data.success === false) {
         setError(data.message);
         setLoading(false);
         return;
       }
       setLoading(false);
       setError(null);
-      navigate('sign-in');
+      navigate('/sign-in');
     } catch (error) {
       setLoading(false);
       setError(error.message);
@@ -72,7 +72,7 @@ const SignUp = () => {
       <div className="flex gap-2 mt-5">
         <p>Have an account?</p>
         <Link to="/sign-in">
-          <span className="text-blue-700">Sign in</span>
+          <span className="text-blue-700">Sign In</span>
         </Link>
       </div>
       {error && <p className="text-red-500 mt-5">{error}</p>}
